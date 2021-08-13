@@ -2,6 +2,54 @@
 
 [dnsproxy](https://github.com/AdguardTeam/dnsproxy) as a simple service
 
+Example service using AdGuard Team's dnsproxy to provide encrypted transports to existing Pi-hole+Unbound deployments, can be easily modified to purpose.
+
+## Usage
+* Install dnsproxy binary
+Note: The binaries I compile are for aarch64
+If you are using another architecture, grab a binary from the [release page](github.com/AdguardTeam/dnsproxy/releases).
+```
+sudo wget https://github.com/saint-lascivious/dnsproxy-config/raw/master/usr/local/bin/dnsproxy -O /usr/local/bin/dnsproxy
+```
+
+* Install the configuration file
+Create the /opt/dnsproxy directory
+```
+sudo mkdir /opt/dnsproxy
+```
+
+Download the configuration file
+Note: This file must be edited
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -O /opt/dnsproxy
+```
+
+* Install the dnsproxy service file
+```
+sudo wget https://github.com/saint-lascivious/dnsproxy-config/tree/master/lib/systemd/system -O /lib/systemd/system
+```
+
+* Optional: Change Pi-hole FTL/dnsmasq listening port
+If you have enabled listening for tcp/udp 53 in the dnsproxy service configuration file you will need to ensure dnsmasq is not listening on the same port.
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -O /etc/dnsmasq.d
+```
+
+Restart Pi-hole
+```
+pihole restartdns
+```
+
+* Start the dnsproxy service
+Enable the service
+```
+sudo systemctl enable dnsproxy
+```
+
+Start the service
+```
+sudo systemctl dnsproxy start
+```
 
 ## Contact
 * Discord
