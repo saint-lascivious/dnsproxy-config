@@ -1,0 +1,35 @@
+#!/bin/bash
+
+DOMAIN="my.flqd"
+
+CERT_PATH=/etc/letsencrypt/live/$DOMAIN
+CERT=$CERT_PATH/fullchain.pem
+PRIVATE_KEY=$CERT_PATH/privkey.pem
+
+PUBLIC_IP="123.123.123.123"
+
+PIHOLE_1="192.168.1.10:5353"
+PIHOLE_2="192.168.1.20:5353"
+
+UNBOUND_1="192.168.1.10:5335"
+UNBOUND_2="192.168.1.20:5335"
+
+BLACKLIST="--upstream=[/some.domain/]0.0.0.0"
+BOGUS="--bogus-nxdomain=0.0.0.0"
+BOOTSTRAP="--bootstrap=$UNBOUND_1 --bootstrap=$UNBOUND_2"
+CACHE="--cache --cache-optimistic"
+CACHE_TTL="--cache-max-ttl=3600 --cache-min-ttl=300"
+EDNS="--edns --edns-addr=$PUBLIC_IP"
+FALLBACK="--fallback=$UNBOUND_2 --fallback=$UNBOUND_1"
+HTTPS="--https-port=443"
+MISC="--all-servers --fastest-addr --refuse-any"
+NTP_UPSTREAM="--upstream=[/pool.ntp.org/]8.8.8.8:53 --upstream=[/pool.ntp.org/]8.8.4.4:53"
+QUIC="--quic-port=8853"
+RATE_LIMIT="--ratelimit=10"
+TCP_UDP="--port=53"
+TLS="--tls-crt=$CERT --tls-min-version=1.2 --tls-port=853 --tls-key=$PRIVATE_KEY"
+UPSTREAM="--upstream=$PIHOLE_1 --upstream=$PIHOLE_2"
+
+DNSPROXY_OPTS="$BLACKLIST $BOGUS $BOOTSTRAP $CACHE $CACHE_TTL $EDNS $FALLBACK $HTTPS $MISC $NTP_UPSTREAM $QUIC $RATE_LIMIT $TCP_UDP $TLS $UPSTREAM"
+
+/usr/local/bin/dnsproxy $DNSPROXY_OPTS
