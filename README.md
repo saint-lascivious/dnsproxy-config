@@ -6,19 +6,23 @@ Example service using AdGuard Team's dnsproxy to provide encrypted transports to
 
 ## Usage
 * Install dnsproxy binary
+
 Note: The binaries I compile are for aarch64
+
 If you are using another architecture, grab a binary from the [release page](github.com/AdguardTeam/dnsproxy/releases).
 ```
 sudo wget https://github.com/saint-lascivious/dnsproxy-config/raw/master/usr/local/bin/dnsproxy -O /usr/local/bin/dnsproxy
 ```
 
 * Install the configuration file
+
 Create the /opt/dnsproxy directory
 ```
 sudo mkdir /opt/dnsproxy
 ```
 
 Download the configuration file
+
 Note: This file must be edited
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -O /opt/dnsproxy
@@ -30,6 +34,7 @@ sudo wget https://github.com/saint-lascivious/dnsproxy-config/tree/master/lib/sy
 ```
 
 * Optional: Change Pi-hole FTL/dnsmasq listening port
+
 If you have enabled listening for tcp/udp 53 in the dnsproxy service configuration file you will need to ensure dnsmasq is not listening on the same port.
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -O /etc/dnsmasq.d
@@ -41,6 +46,7 @@ pihole restartdns
 ```
 
 * Start the dnsproxy service
+
 Enable the service
 ```
 sudo systemctl enable dnsproxy
