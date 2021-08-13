@@ -11,33 +11,33 @@ Note: The binaries I compile are for aarch64
 
 If you are using another architecture, grab a binary from the [release page](github.com/AdguardTeam/dnsproxy/releases).
 ```
-sudo wget https://github.com/saint-lascivious/dnsproxy-config/raw/master/usr/local/bin/dnsproxy -O /usr/local/bin/dnsproxy
+sudo wget https://github.com/saint-lascivious/dnsproxy-config/raw/master/usr/local/bin/dnsproxy -P /usr/local/bin/
 ```
 
-* Install the configuration file
+* Create the service configuration directory
 
 Create the /opt/dnsproxy directory
 ```
 sudo mkdir /opt/dnsproxy
 ```
 
-Download the configuration file
+* Download the configuration file
 
 Note: This file must be edited
 ```
-sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -O /opt/dnsproxy
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -P /opt/dnsproxy
 ```
 
 * Install the dnsproxy service file
 ```
-sudo wget https://github.com/saint-lascivious/dnsproxy-config/tree/master/lib/systemd/system -O /lib/systemd/system
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/lib/systemd/system/dnsproxy.service -P /lib/systemd/system
 ```
 
 * Optional: Change Pi-hole FTL/dnsmasq listening port
 
 If you have enabled listening for tcp/udp 53 in the dnsproxy service configuration file you will need to ensure dnsmasq is not listening on the same port.
 ```
-sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -O /etc/dnsmasq.d
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -P /etc/dnsmasq.d
 ```
 
 Restart Pi-hole
