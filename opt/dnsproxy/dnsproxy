@@ -30,7 +30,7 @@ CACHE="--cache --cache-optimistic"
 CACHE_TTL="--cache-max-ttl=3600 --cache-min-ttl=300"
 # Disable EDNS by default
 #EDNS="--edns --edns-addr=$PUBLIC_IP"
-# Exactly what it sounds like
+# Fallback nameservers - exactly what it sounds like
 FALLBACK="--fallback=$UNBOUND_2 --fallback=$UNBOUND_1"
 HTTPS="--https-port=443"
 # Query all upstream paths in parallel, ping for fastest response, refuse records of type ANY
@@ -41,9 +41,11 @@ NTP_UPSTREAM="--upstream=[/pool.ntp.org/]8.8.8.8:53 --upstream=[/pool.ntp.org/]8
 #QUIC="--quic-port=8853"
 # Rate limit proxy to 10 queries per second
 RATE_LIMIT="--ratelimit=10"
-# Disable listening on port 53 by default
-#TCP_UDP="--port=53"
+# Standard DNS - Pi-hole/dnsmasq must be listening on another port, in this example 5353
+TCP_UDP="--port=53"
+# TLS parameters
 TLS="--tls-crt=$CERT --tls-min-version=1.2 --tls-port=853 --tls-key=$PRIVATE_KEY"
+# Upstream nameservers - in this example, Pi-hole
 UPSTREAM="--upstream=$PIHOLE_1 --upstream=$PIHOLE_2"
 
 DNSPROXY_OPTS="$BLACKLIST $BOGUS $BOOTSTRAP $CACHE $CACHE_TTL $EDNS $FALLBACK $HTTPS $MISC $NTP_UPSTREAM $QUIC $RATE_LIMIT $TCP_UDP $TLS $UPSTREAM"

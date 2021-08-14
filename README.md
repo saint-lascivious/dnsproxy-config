@@ -33,9 +33,9 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/lib/systemd/system/dnsproxy.service -P /lib/systemd/system
 ```
 
-* Optional: Change Pi-hole FTL/dnsmasq listening port
+* Change Pi-hole FTL/dnsmasq listening port
 
-If you have enabled listening for tcp/udp 53 in the dnsproxy service configuration file you will need to ensure dnsmasq is not listening on the same port.
+If listening for tcp/udp 53 in the dnsproxy service configuration file is enabled you will need to ensure dnsmasq is not listening on the same port.
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -P /etc/dnsmasq.d
 ```
