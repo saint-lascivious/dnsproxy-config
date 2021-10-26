@@ -38,7 +38,7 @@ sudo mkdir /etc/dnsproxy
 
 * Download the dnsproxy configuration file
 ```
-sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/dnsproxy-config.yaml
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/dnsproxy-config.yaml -P /etc/dnsproxy
 ```
 
 * Change Pi-hole dnsmasq listening port
