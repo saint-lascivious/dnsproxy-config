@@ -21,9 +21,7 @@ Create the /opt/dnsproxy directory
 sudo mkdir /opt/dnsproxy
 ```
 
-* Download the configuration file
-
-Note: This file must be edited
+* Download the service configuration file
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -P /opt/dnsproxy
 ```
@@ -33,9 +31,19 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/lib/systemd/system/dnsproxy.service -P /lib/systemd/system
 ```
 
-* Change Pi-hole FTL/dnsmasq listening port
+* Create the dnsproxy configuration directory
+```
+sudo mkdir /etc/dnsproxy
+```
 
-If listening for tcp/udp 53 in the dnsproxy service configuration file is enabled you will need to ensure dnsmasq is not listening on the same port.
+* Download the dnsproxy configuration file
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/dnsproxy-config.yaml
+```
+
+* Change Pi-hole dnsmasq listening port
+
+If listening for tcp/udp 53 you will need to ensure dnsmasq is not listening on the same port.
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -P /etc/dnsmasq.d
 ```

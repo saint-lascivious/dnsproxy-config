@@ -1,53 +1,6 @@
 #!/bin/bash
 
-# Your fully qualified domain name
-DOMAIN="my.flqd"
+CONFIG_PATH="--config-path=/etc/dnsproxy/dnsproxy-config.yaml"
 
-# Certbot certificate chain
-CERT_PATH=/etc/letsencrypt/live/$DOMAIN
-CERT=$CERT_PATH/fullchain.pem
-PRIVATE_KEY=$CERT_PATH/privkey.pem
-
-# Your public address (for EDNS)
-#PUBLIC_IP="123.123.123.123"
-
-# Pi-hole instances IP:PORT
-PIHOLE_1="192.168.1.10:5353"
-PIHOLE_2="192.168.1.20:5353"
-
-# Unbound instances IP:PORT
-UNBOUND_1="192.168.1.10:5335"
-UNBOUND_2="192.168.1.20:5335"
-
-# Example null routing certain domains at the proxy level
-#BLACKLIST="--upstream=[/some.domain/]0.0.0.0 --upstream=[/someother.domain/]0.0.0.0"
-# BOGUS/NXDOMAIN IP
-BOGUS="--bogus-nxdomain=0.0.0.0"
-# Bootstrap through local unfiltered unbound instances
-BOOTSTRAP="--bootstrap=$UNBOUND_1 --bootstrap=$UNBOUND_2"
-# Cache parameters
-CACHE="--cache --cache-optimistic"
-CACHE_TTL="--cache-max-ttl=3600 --cache-min-ttl=300"
-# Disable EDNS by default
-#EDNS="--edns --edns-addr=$PUBLIC_IP"
-# Fallback nameservers - exactly what it sounds like
-FALLBACK="--fallback=$UNBOUND_2 --fallback=$UNBOUND_1"
-HTTPS="--https-port=443"
-# Query all upstream paths in parallel, ping for fastest response, refuse records of type ANY
-MISC="--all-servers --fastest-addr --refuse-any"
-# Example ensuring ntp pool always resolves externally
-NTP_UPSTREAM="--upstream=[/pool.ntp.org/]8.8.8.8:53 --upstream=[/pool.ntp.org/]8.8.4.4:53"
-# Disable DoQUIC by default
-#QUIC="--quic-port=8853"
-# Rate limit proxy to 10 queries per second
-RATE_LIMIT="--ratelimit=10"
-# Standard DNS - Pi-hole/dnsmasq must be listening on another port, in this example 5353
-TCP_UDP="--port=53"
-# TLS parameters
-TLS="--tls-crt=$CERT --tls-min-version=1.2 --tls-port=853 --tls-key=$PRIVATE_KEY"
-# Upstream nameservers - in this example, Pi-hole
-UPSTREAM="--upstream=$PIHOLE_1 --upstream=$PIHOLE_2"
-
-DNSPROXY_OPTS="$BLACKLIST $BOGUS $BOOTSTRAP $CACHE $CACHE_TTL $EDNS $FALLBACK $HTTPS $MISC $NTP_UPSTREAM $QUIC $RATE_LIMIT $TCP_UDP $TLS $UPSTREAM"
-
+DNSPROXY_OPTS="$CONFIG_PATH"
 /usr/local/bin/dnsproxy $DNSPROXY_OPTS

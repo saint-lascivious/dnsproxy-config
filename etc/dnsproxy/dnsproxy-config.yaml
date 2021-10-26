@@ -1,0 +1,171 @@
+# dnsproxy-config.yaml
+
+# Example yaml configuration file for dnsproxy.
+
+# If specified, parallel queries to all configured upstream servers are
+# enabled.
+all-servers:
+
+# Transform responses that contain at least one of the given IP
+# addresses into NXDOMAIN. Can be specified multiple times.
+bogus-nxdomain:
+  - "0.0.0.0"
+
+# Bootstrap DNS for DoH and DoT, can be specified multiple times
+# (default: 8.8.8.8:53).
+bootstrap:
+    # Bootstrap through Unbound
+    # Unbound 1
+  - "192.168.1.10:5335"
+    # Unbound 2
+  - "192.168.1.20:5335"
+
+# If specified, DNS cache is enabled.
+cache:
+
+# Maximum TTL value for DNS entries, in seconds.
+cache-max-ttl:
+  - "3600"
+
+# Minimum TTL value for DNS entries, in seconds. Capped at 3600.
+# Artificially extending TTLs should only be done with careful
+# consideration.
+cache-min-ttl:
+  - "0"
+
+# Respond with expired cached answers and simultaneously try to refresh
+# them.
+# Analogous to Unbound's serve-expired behaviour.
+cache-optimistic:
+
+# Cache size in bytes (default: 64k).
+cache-size:
+    # Why doesn't this accept standard units (64k, 1m, 8M, etc.)?
+  - "8388608"
+
+# If specified, dnsproxy will act as a DNS64 server.
+#dns64:
+
+# If specified, this is the DNS64 prefix dnsproxy will be using when it
+# works as a DNS64 server. If not specified, dnsproxy uses the
+# 'Well-Known Prefix' (default: 64:ff9b::).
+#dns64-prefix:
+#  - "64:ff9b::"
+
+# Path to a file with DNSCrypt configuration. You can generate one using
+# https://github.com/ameshkov/dnscrypt
+#dnscrypt-config:
+
+# Listening ports for DNSCrypt.
+#dnscrypt-port:
+
+# Use EDNS Client Subnet extension.
+edns:
+
+# Send EDNS Client Address.
+edns-addr:
+    # Your public address
+  - "123.456.789.10"
+
+# Fallback resolvers to use when regular ones are unavailable, can be
+# specified multiple times. You can also specify path to a file with the
+# list of servers.
+fallback:
+    # Fallback to Unbound if Pi-hole has fallen over.
+    # Keep resolution in house at the expense of loss of filtering.
+    # You'll obviously want to edit these addresses to suit.
+    # Unbound 1
+  - "192.168.1.10:5335"
+    # Unbound 2
+  - "192.168.1.20:5335"
+
+# Respond to A or AAAA requests only with the fastest IP address.
+fastest-addr:
+
+# Listening ports for DNS-over-HTTPS.
+https-port:
+  - "443"
+    # You could also redirect 8053 to 443 using a local firewall rule
+  - "8053"
+
+# Disable secure TLS certificate validation.
+#insecure:
+
+# If specified, all AAAA requests will be replied with NoError RCode and
+# empty answer.
+#ipv6-disabled:
+
+# Listening addresses (default: 0.0.0.0).
+listen:
+  - "127.0.0.1"
+
+# Set the maximum number of go routines. A value <= 0 will not not set a
+# maximum (default: 0).
+max-go-routines:
+
+# Path to the log file. If not set, write to stdout.
+output:
+    # There's no flag to disable logging specifically, send logs to
+    # null instead.
+  - "/dev/null"
+
+# Listening ports. Zero value disables TCP and UDP listeners
+# (default: 53).
+port:
+  - "53"
+
+# Listening ports for DNS-over-QUIC.
+quic-port:
+  - "8853"
+
+# Ratelimit (requests per second) (default: 0).
+ratelimit:
+  - "10"
+
+# If specified, refuse ANY requests.
+refuse-any:
+
+# Path to a file with the certificate chain.
+tls-crt:
+  - "/etc/letsencrypt/live/example.domain/fullchain.pem"
+
+# Path to a file with the private key.
+tls-key:
+  - "/etc/letsencrypt/live/example.domain/privkey.pem"
+
+# Maximum TLS version, for example 1.3
+tls-max-version:
+  - "1.3"
+
+# Minimum TLS version, for example 1.0
+tls-min-version:
+    # Accept TLS 1.2 at the bare minimum
+  - "1.2"
+
+# Listening ports for DNS-over-TLS.
+tls-port:
+  - "853"
+
+#Set the size of the UDP buffer in bytes. A value <= 0 will use the
+# system default (default: 0).
+udp-buf-size:
+  - "4096"
+
+# An upstream to be used (can be specified multiple times). You can also
+# specify path to a file with the list of servers.
+upstream:
+    # Pi-hole filtered nameservers in this example.
+    # You'll obviously want to edit these addresses to suit.
+    # Pi-hole 1
+  - "192.168.1.10:5353"
+    # Pi-hole 2
+  - "192.168.1.20:5353"
+
+  # Ensure ntp pool is always resolved externally, useful if you don't
+  # have a hardware RTC (Raspberry Pi boards by default for example).
+  # DNSSEC requires the correct date and time.
+  - "[/pool.ntp.org/]8.8.8.8:53"
+  - "[/pool.ntp.org/]8.8.4.4:53"
+
+# Verbose output (optional)
+#verbose:
