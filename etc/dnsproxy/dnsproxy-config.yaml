@@ -65,7 +65,7 @@ edns:
 # Send EDNS Client Address.
 edns-addr:
     # Your public address
-  - "123.456.789.10"
+  - "192.168.1.123"
 
 # Fallback resolvers to use when regular ones are unavailable, can be
 # specified multiple times. You can also specify path to a file with the
