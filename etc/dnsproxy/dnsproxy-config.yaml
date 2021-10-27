@@ -54,7 +54,6 @@ cache-size: 8388608
 # https://github.com/ameshkov/dnscrypt
 #dnscrypt-config:
 
-
 # Use EDNS Client Subnet extension.
 edns: true
 
@@ -132,10 +131,12 @@ tls-min-version: 1.2
 tls-port:
   - 853
 
-#Set the size of the UDP buffer in bytes. A value <= 0 will use the
+# Set the size of the UDP buffer in bytes. A value <= 0 will use the
 # system default (default: 0).
 udp-buf-size: 4096
 
+# An upstream to be used (can be specified multiple times). You can
+# also specify path to a file with the list of server.
 upstream:
     # Pi-hole filtered nameservers in this example.
     # You'll obviously want to edit these addresses to suit.
