@@ -54,7 +54,7 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/upstream.conf -P /etc/dnsproxy
 ```
 
-This arrangement better suits many servers abd custom upstreams. You'll want to edit these lists to suit your requirements, you can add as many or as few servers as you like.
+This arrangement better suits many servers and custom upstreams. You'll want to edit these lists to suit your requirements, you can add as many or as few servers as you like.
 
 * Change Pi-hole dnsmasq listening port
 
