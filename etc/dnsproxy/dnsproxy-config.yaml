@@ -128,7 +128,7 @@ udp-buf-size: 4096
 # An upstream to be used (can be specified multiple times). You can
 # also specify path to a file with the list of server.
 upstream:
-   - /etc/dnsproxy/bootstrap.conf
+   - /etc/dnsproxy/upstream.conf
 
 # Verbose output (optional)
 #verbose: true
