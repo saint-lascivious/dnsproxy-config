@@ -16,11 +16,7 @@ bogus-nxdomain:
 # Bootstrap DNS for DoH and DoT, can be specified multiple times
 # (default: 8.8.8.8:53).
 bootstrap:
-    # Bootstrap through Unbound
-    # Unbound 1
-  - 192.168.1.10:5335
-    # Unbound 2
-  - 192.168.1.20:5335
+   - /etc/dnsproxy/bootstrap.conf
 
 # If specified, DNS cache is enabled.
 cache: true
@@ -65,13 +61,7 @@ edns-addr: 192.168.1.123
 # specified multiple times. You can also specify path to a file with the
 # list of servers.
 fallback:
-    # Fallback to Unbound if Pi-hole has fallen over.
-    # Keep resolution in house at the expense of loss of filtering.
-    # You'll obviously want to edit these addresses to suit.
-    # Unbound 1
-  - 192.168.1.10:5335
-    # Unbound 2
-  - 192.168.1.20:5335
+   - /etc/dnsproxy/fallback.conf
 
 # Respond to A or AAAA requests only with the fastest IP address.
 fastest-addr: true
@@ -138,12 +128,7 @@ udp-buf-size: 4096
 # An upstream to be used (can be specified multiple times). You can
 # also specify path to a file with the list of server.
 upstream:
-    # Pi-hole filtered nameservers in this example.
-    # You'll obviously want to edit these addresses to suit.
-    # Pi-hole 1
-  - 192.168.1.10:5353
-    # Pi-hole 2
-  - 192.168.1.20:5353
+   - /etc/dnsproxy/bootstrap.conf
 
 # Verbose output (optional)
 #verbose: true

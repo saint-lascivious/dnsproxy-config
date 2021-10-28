@@ -36,10 +36,25 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo mkdir /etc/dnsproxy
 ```
 
-* Download the dnsproxy configuration file
+* Download the dnsproxy configuration files
+
+Download the primary .yaml config
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/dnsproxy-config.yaml -P /etc/dnsproxy
 ```
+
+Download the bootstrap, fallback, and upstream config files
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/bootstrap.conf -P /etc/dnsproxy
+```
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/fallback.conf -P /etc/dnsproxy
+```
+```
+sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/upstream.conf -P /etc/dnsproxy
+```
+
+This arrangement better suits many servers abd custom upstreams. You'll want to edit these lists to suit your requirements, you can add as many or as few servers as you like.
 
 * Change Pi-hole dnsmasq listening port
 
