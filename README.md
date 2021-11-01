@@ -2,7 +2,7 @@
 
 [dnsproxy](https://github.com/AdguardTeam/dnsproxy) as a simple service
 
-Example service using AdGuard Team's dnsproxy to provide encrypted transports to existing Pi-hole+Unbound deployments, can be easily modified to purpose.
+Example service using AdGuard Team's dnsproxy to provide encrypted transports to existing local and remote nameservers, can be easily modified to purpose.
 
 ## Usage
 * Install dnsproxy binary
@@ -36,14 +36,14 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo mkdir /etc/dnsproxy
 ```
 
-* Download the dnsproxy configuration files
-
-Download the primary .yaml config
+* Download the primary .yaml configuration file
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/dnsproxy-config.yaml -P /etc/dnsproxy
 ```
 
-Download the bootstrap, fallback, and upstream config files
+DoHTTPS, DoTLS, and DoQUIC are disabled by default as a certified domain is required.
+
+* Download the secondary bootstrap, fallback, and upstream .conf files
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/bootstrap.conf -P /etc/dnsproxy
 ```
@@ -54,7 +54,7 @@ sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/mas
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsproxy/upstream.conf -P /etc/dnsproxy
 ```
 
-This arrangement better suits many servers and custom upstreams. You'll want to edit these lists to suit your requirements, you can add as many or as few servers as you like.
+This arrangement better suits many servers and custom upstreams. You'll want to edit these files to suit your requirements, you can add as many or as few servers as you like.
 
 * Change Pi-hole dnsmasq listening port
 
