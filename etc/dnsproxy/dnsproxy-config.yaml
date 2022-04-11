@@ -93,11 +93,11 @@ max-go-routines: 0
 # Path to the log file. If not set, write to stdout.
 # There's no flag to disable logging specifically, send logs to
 # null instead
-output: /dev/null
+#output: /dev/null
 
 # Listening ports for DNS-over-QUIC.
 #quic-port:
-#  - 8853
+#  - 853
 
 # Ratelimit (requests per second) (default: 0).
 ratelimit: 10

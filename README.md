@@ -14,6 +14,11 @@ If you are using another architecture, grab a binary from the [release page](git
 sudo wget https://github.com/saint-lascivious/dnsproxy-config/raw/master/usr/local/bin/dnsproxy -P /usr/local/bin/
 ```
 
+Ensure it is executable
+```
+chmod +x /usr/local/bin/dnsproxy
+```
+
 * Create the service configuration directory
 
 Create the /opt/dnsproxy directory
@@ -24,6 +29,11 @@ sudo mkdir /opt/dnsproxy
 * Download the service configuration file
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/opt/dnsproxy/dnsproxy -P /opt/dnsproxy
+```
+
+Ensure it is executable
+```
+chmod +x /opt/dnsproxy/dnsproxy
 ```
 
 * Install the dnsproxy service file
@@ -58,7 +68,7 @@ This arrangement better suits many servers and custom upstreams. You'll want to 
 
 * Change Pi-hole dnsmasq listening port
 
-If listening for tcp/udp 53 you will need to ensure dnsmasq is not listening on the same port.
+If listening for tcp/udp 53 (example: if this is a Pi-hole host) you will need to ensure dnsmasq is not listening on the same port.
 ```
 sudo wget https://raw.githubusercontent.com/saint-lascivious/dnsproxy-config/master/etc/dnsmasq.d/99-listening-port.conf -P /etc/dnsmasq.d
 ```
@@ -68,7 +78,7 @@ Restart Pi-hole
 pihole restartdns
 ```
 
-* Start the dnsproxy service
+* Start the `dnsproxy` service
 
 Enable the service
 ```
@@ -80,6 +90,10 @@ Start the service
 sudo systemctl dnsproxy start
 ```
 
+Check that `dnsproxy` is running
+```
+sudo systemctl status dnsproxy
+```
 ## Contact
 * Discord
 [SaintLascivious](https://discord.gg/NC7taVyn)

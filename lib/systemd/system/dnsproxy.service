@@ -1,6 +1,9 @@
 [Unit]
-Description=AdguardTeam/dnsproxy service
-After=syslog.target network.target
+Description=AdguardTeam dnsproxy service
+Documentation=https://github.com/AdguardTeam/dnsproxy#readme
+Wants=network-online.target
+After=syslog.target network-online.target
+StartLimitInterval=0
 
 [Service]
 Type=simple
