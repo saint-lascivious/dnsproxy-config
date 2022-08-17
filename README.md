@@ -87,7 +87,7 @@ sudo systemctl enable dnsproxy
 
 Start the service
 ```
-sudo systemctl dnsproxy start
+sudo systemctl start dnsproxy
 ```
 
 Check that `dnsproxy` is running
